@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+  <title>{{ page.title }}</title>
+
+  <meta name="description" content="{{ page.description }}">
+  <meta name="author" content="Luke Wesley-Holley">
+  <meta name="copyright" content="&copy; {{ site.time | date: '%Y' }} Luke Wesley-Holley">
+  <link rel="alternate" href="https://lukewh.com" hreflang="en-GB">
+
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:site_name" content="Lukewh">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="{{ page.description }}">
+  <meta property="og:image" content="/assets/logo.png">
+  <meta property="og:url"
+    content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@lukewh">
+  <meta property="twitter:creator" content="@lukewh">
+  <meta property="twitter:url"
+    content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <meta property="twitter:image" content="/assets/logo.png">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/rss.xml">
+  <link rel="alternate" type="application/atom+xml" href="/blog/feed.atom">
+
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="/assets/favicon/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=B612+Mono&display=swap" rel="stylesheet">
+
+  {% if page.draft %}
+  <meta name="robots" content="noindex">
+  {% endif %}
+
+  <link href="/assets/emacs.css" rel="stylesheet" />
+
+  <style media="screen">
+   html {
+    font-family: 'B612 Mono', monospace;
+   }
+
+   body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+   }
+
+   .page {
+    padding: 2rem 0;
+    max-width: 60em;
+    margin: 0 auto;
+   }
+
+   a:not([href^="https://lukewh.com"]):not([href^="#"]):not([href^="/"]) {
+    display: inline-block;
+    position: relative;
+    padding-right: 12px;
+   }
+   a:not([href^="https://lukewh.com"]):not([href^="#"]):not([href^="/"])::after {
+    content: "↗";
+    display: block;
+    font-size: 8px;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 0; right: 0;
+    border: 1px solid #999;
+    line-height: 8px;
+    text-align: center;
+    color: #999;
+   }
+
+   .cols {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   }
+
+   .button {
+    border: 3px solid #000;
+    background: #000;
+    border-radius: 10px;
+    padding: 0.25rem 0.5rem;
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 1rem;
+    transition: all 0.2s;
+   }
+   .button:hover {
+    background: #fff;
+    color: #000;
+   }
+
+   hr {
+    background-color: #efefef;
+    height: 1px;
+    border: 0;
+   }
+
+   code {
+    font-size: 1rem;
+   }
+
+   h1,h2,h3,h4,h5,h6 {
+    margin-top: 2rem;
+   }
+   h1+h2, h2+h3, h3+h4, h4+h5, h5+h6 {
+    margin-top: 0;
+   }
+
+   table {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    border-radius: 10px;
+   }
+   table td, table th {
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    padding: 0.5rem;
+   }
+   table td:last-child, table th:last-child {
+    border-right: 0;
+   }
+   table th {
+    background: #000;
+    color: #fff;
+   }
+
+   #table-of-contents {
+    position: sticky;
+    top: 1rem;
+    max-width: 28em;
+    margin-top: 9em;
+    align-self: flex-start;
+    margin-right: 1em;
+    padding-right: 1em; 
+    border-right: 1px solid #efefef;
+   }
+
+   @media screen and (max-width: 850px) {
+    #table-of-contents {
+      display: none;
+    }
+   } 
+
+   img {
+    border: 3px solid black;
+    border-radius: 10px;
+    max-width: 100%;
+   }
+   img.is-round {
+    border-radius: 100%;
+   }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="/">Home</a> | <a href="/blog">Blog</a>
+  </header>
+  <div class="page">
+    {{ content }}
+  </div>
+</body>
+
+</html>

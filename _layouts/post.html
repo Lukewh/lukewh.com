@@ -1,0 +1,74 @@
+---
+layout: default
+---
+
+<a href="/blog" class="button">🡐 posts</a>
+
+<div class="cols">
+<div id="table-of-contents"></div>
+
+<div>
+<h1>{% if page.draft %}DRAFT - {% endif %}{{ page.title }}</h1>
+<div class="cols">
+  <p>
+    <small>
+      <i>
+        <time datetime="{{ page.date | date: '%F' }}">{{ page.date | date_to_long_string: "ordinal"}}</time>
+      </i>
+    </small>
+  </p>
+  {% if page.tags != empty %}
+  <p>
+    <small>
+      <b>Tags:</b>
+      {% for tag in page.tags %}
+        {{ tag }}
+      {% endfor %}
+    </small>
+  </p>
+  {% endif %}
+</div>
+{{ content }}
+</div>
+</div>
+<script>
+  const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+  const toc = {level: 0, children: []};
+  const toc_stack = [toc];
+  for (const heading of headings) {
+    if (!heading.id) {
+      continue;
+    }
+    const level = parseInt(heading.nodeName[1]);
+    const toc_item = {
+      title: heading.innerText,
+      link: `#${heading.id}`,
+      level: level,
+      children: []
+    };
+
+    toc_stack.push(toc_item);
+  }
+
+  toc_stack.reverse()
+
+  for (const toc_item_index in toc_stack) {
+    const toc_item = toc_stack[toc_item_index];
+    if (toc_item.level > 0) {
+      const parent = toc_stack.slice(toc_item_index).find((stack_item) => stack_item.level === toc_item.level - 1);
+      parent.children.unshift(toc_item);
+    }
+  }
+
+  const renderItem = (item) => {
+    let str = `<li><a href="${item.link}">${item.title}</a>`;
+    if (item.children) {
+      str = `${str}<ul>${item.children.map(renderItem).join("")}</ul>`;
+    }
+
+    return `${str}</li>`;
+  }
+
+  const tocEl = document.getElementById("table-of-contents");
+  tocEl.innerHTML = `<ul>${toc.children.map(renderItem).join("")}</ul>`;
+</script>

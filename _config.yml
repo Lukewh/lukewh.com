@@ -1,0 +1,16 @@
+title: Lukewh.com
+description: Engineering Manager
+author: Luke Wesley-Holley
+email: luke@lukewh.com
+baseurl: 
+url: "https://lukewh.com"
+github_username: Lukewh
+
+collections:
+  posts:
+    permalink: /blog/:slug
+
+plugins:
+  - jekyll-sitemap
+
+show_drafts: true
