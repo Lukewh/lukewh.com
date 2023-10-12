@@ -2,34 +2,36 @@
 layout: default
 ---
 
-<a href="/blog" class="button">🡐 posts</a>
-
-<div class="cols">
-<div id="table-of-contents"></div>
-
-<div>
-<h1>{% if page.draft %}DRAFT - {% endif %}{{ page.title }}</h1>
-<div class="cols">
-  <p>
-    <small>
-      <i>
-        <time datetime="{{ page.date | date: '%F' }}">{{ page.date | date_to_long_string: "ordinal"}}</time>
-      </i>
-    </small>
-  </p>
-  {% if page.tags != empty %}
-  <p>
-    <small>
-      <b>Tags:</b>
-      {% for tag in page.tags %}
-        {{ tag }}
-      {% endfor %}
-    </small>
-  </p>
-  {% endif %}
+<div class="is-sticky">
+  <div class="cols">
+    <a href="/blog" class="button">🡐 posts</a>
+    <h1>{% if page.draft %}DRAFT - {% endif %}{{ page.title }}</h1>
+  </div>
 </div>
-{{ content }}
-</div>
+<div class="cols">
+  <div id="table-of-contents"></div>
+  <div>
+    <div class="cols">
+      <p>
+        <small>
+          <i>
+            <time datetime="{{ page.date | date: '%F' }}">{{ page.date | date_to_long_string: "ordinal"}}</time>
+          </i>
+        </small>
+      </p>
+      {% if page.tags != empty %}
+      <p>
+        <small>
+          <b>Tags:</b>
+          {% for tag in page.tags %}
+            {{ tag }}
+          {% endfor %}
+        </small>
+      </p>
+      {% endif %}
+    </div>
+  {{ content }}
+  </div>
 </div>
 <script>
   const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
@@ -62,7 +64,7 @@ layout: default
 
   const renderItem = (item) => {
     let str = `<li><a href="${item.link}">${item.title}</a>`;
-    if (item.children) {
+    if (item.children.length) {
       str = `${str}<ul>${item.children.map(renderItem).join("")}</ul>`;
     }
 

@@ -49,6 +49,7 @@
   <style media="screen">
    html {
     font-family: 'B612 Mono', monospace;
+    scroll-behavior: smooth;
    }
 
    body {
@@ -57,7 +58,6 @@
     align-items: center;
     flex-direction: column;
    }
-
    .page {
     padding: 2rem 0;
     max-width: 60em;
@@ -122,6 +122,11 @@
     margin-top: 0;
    }
 
+   .is-sticky .cols {
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #efefef;
+   }
+
    table {
     border: 1px solid #000;
     border-collapse: collapse;
@@ -142,13 +147,36 @@
 
    #table-of-contents {
     position: sticky;
-    top: 1rem;
-    max-width: 28em;
-    margin-top: 9em;
+    top: 6em;
+    width: 30em;
     align-self: flex-start;
     margin-right: 1em;
     padding-right: 1em; 
     border-right: 1px solid #efefef;
+   }
+
+   #table-of-contents ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+   }
+
+   #table-of-contents ul ul {
+    padding-inline-start: 1em;
+    border-left: 1px solid #efefef;
+   }
+
+   #table-of-contents ul li {
+    position: relative;
+   }
+   
+   #table-of-contents ul ul li:before {
+    content: "";
+    height: 1px;
+    background: #efefef;
+    width: .5em;
+    position: absolute;
+    top: 0.6em;
+    left: -1em;
    }
 
    @media screen and (max-width: 850px) {
@@ -162,9 +190,14 @@
     border-radius: 10px;
     max-width: 100%;
    }
-   img.is-round {
+   .is-round {
     border-radius: 100%;
    }
+   .is-sticky {
+    position: sticky;
+    top: 0;
+   }
+
   </style>
 </head>
 
@@ -172,6 +205,7 @@
   <header>
     <nav>
       <a href="/">Home</a> | <a href="/blog">Blog</a>
+    </nav>
   </header>
   <div class="page">
     {{ content }}
