@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Dangerously loading and running JS in Obsidian
+title: Running JS from the web in Obsidian
 description: |
   Living life on the edge - executing JS from the web in Obsidian.
 tags: Obsidian
