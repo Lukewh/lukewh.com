@@ -200,12 +200,34 @@
     border-radius: 10px;
     max-width: 100%;
     box-sizing: border-box;
+    display: block;
    }
    .is-round {
     border-radius: 100%;
    }
    .no-margin-bottom {
     margin-bottom: 0;
+   }
+
+   .images-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    border: 3px solid #000;
+    background: #000;
+   }
+
+   .images-wrapper p {
+    width: 33.33333%;
+    margin: 0;
+    flex-shrink: 1;
+    display: block;
+   }
+
+   .images-wrapper p img {
+    border: 0 none;
+    border-radius: 0;
    }
 
   </style>

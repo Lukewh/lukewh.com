@@ -73,4 +73,29 @@ layout: default
 
   const tocEl = document.getElementById("table-of-contents");
   tocEl.innerHTML = `<ul>${toc.children.map(renderItem).join("")}</ul>`;
+
+  const imgs = document.querySelectorAll("p:has(img) + p img");
+  const groups = [];
+  let _tempGroup = [];
+  for (const img of imgs) {
+    const parent = img.parentNode;
+    const prev = parent.previousElementSibling;
+    const next = parent.nextElementSibling;
+    if (!_tempGroup.length && prev && prev.querySelector("img")) {
+      _tempGroup.push(prev);
+    }
+    _tempGroup.push(parent);
+    if (!next || !next.querySelector("img")) {
+      groups.push(_tempGroup);
+      _tempGroup = [];
+    }
+  }
+  for (const group of groups) {
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("images-wrapper");
+    group[0].parentNode.insertBefore(wrapper, group[0]);
+    for (const ele of group) {
+      wrapper.appendChild(ele);
+    }
+  }
 </script>
