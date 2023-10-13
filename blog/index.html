@@ -11,7 +11,7 @@ description: Thoughts and musings.
 {% for post in site.posts %}
 {% unless post.draft %}
 <div data-tags="{% for tag in post.tags %}{{tag}},{% endfor %}">
-<h2>
+<h2 class="no-margin-bottom">
     <a
         href="{% if post.external_url %}{{ post.external_url }}{% else %}{{ post.url | relative_url }}{% endif %}">{{post.title}}</a>
 </h2>
