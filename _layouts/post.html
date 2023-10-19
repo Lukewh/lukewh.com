@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 ---
 
 <div class="header">
@@ -9,93 +9,22 @@ layout: default
   </div>
 </div>
 <div class="cols">
-  <div id="table-of-contents"></div>
-  <div>
-    <div class="cols">
-      <p>
-        <small>
-          <i>
-            <time datetime="{{ page.date | date: '%F' }}">{{ page.date | date_to_long_string: "ordinal"}}</time>
-          </i>
-        </small>
-      </p>
-      {% if page.tags != empty %}
-      <p>
-        <small>
-          <b>Tags:</b>
-          {% for tag in page.tags %}
-            {{ tag }}
-          {% endfor %}
-        </small>
-      </p>
-      {% endif %}
-    </div>
-  {{ content }}
-  </div>
+  <p>
+    <small>
+      <i>
+        <time datetime="{{ page.date | date: '%F' }}">{{ page.date | date_to_long_string: "ordinal"}}</time>
+      </i>
+    </small>
+  </p>
+  {% if page.tags != empty %}
+  <p>
+    <small>
+      <b>Tags:</b>
+      {% for tag in page.tags %}
+        {{ tag }}
+      {% endfor %}
+    </small>
+  </p>
+  {% endif %}
 </div>
-<script>
-  const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
-  const toc = {level: 0, children: []};
-  const toc_stack = [toc];
-  for (const heading of headings) {
-    if (!heading.id) {
-      continue;
-    }
-    const level = parseInt(heading.nodeName[1]);
-    const toc_item = {
-      title: heading.innerText,
-      link: `#${heading.id}`,
-      level: level,
-      children: []
-    };
-
-    toc_stack.push(toc_item);
-  }
-
-  toc_stack.reverse()
-
-  for (const toc_item_index in toc_stack) {
-    const toc_item = toc_stack[toc_item_index];
-    if (toc_item.level > 0) {
-      const parent = toc_stack.slice(toc_item_index).find((stack_item) => stack_item.level === toc_item.level - 1);
-      parent.children.unshift(toc_item);
-    }
-  }
-
-  const renderItem = (item) => {
-    let str = `<li><a href="${item.link}">${item.title}</a>`;
-    if (item.children.length) {
-      str = `${str}<ul>${item.children.map(renderItem).join("")}</ul>`;
-    }
-
-    return `${str}</li>`;
-  }
-
-  const tocEl = document.getElementById("table-of-contents");
-  tocEl.innerHTML = `<ul>${toc.children.map(renderItem).join("")}</ul>`;
-
-  const imgs = document.querySelectorAll("p:has(img) + p img");
-  const groups = [];
-  let _tempGroup = [];
-  for (const img of imgs) {
-    const parent = img.parentNode;
-    const prev = parent.previousElementSibling;
-    const next = parent.nextElementSibling;
-    if (!_tempGroup.length && prev && prev.querySelector("img")) {
-      _tempGroup.push(prev);
-    }
-    _tempGroup.push(parent);
-    if (!next || !next.querySelector("img")) {
-      groups.push(_tempGroup);
-      _tempGroup = [];
-    }
-  }
-  for (const group of groups) {
-    const wrapper = document.createElement("div");
-    wrapper.classList.add("images-wrapper");
-    group[0].parentNode.insertBefore(wrapper, group[0]);
-    for (const ele of group) {
-      wrapper.appendChild(ele);
-    }
-  }
-</script>
+{{content}}
