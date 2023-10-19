@@ -2,7 +2,7 @@
 layout: page
 title: Lukewh's 1d6 System
 description: |
- A simple 1d6 TTRPG System for short campaigns or single scenarios.
+    A simple 1d6 TTRPG System for short campaigns or single scenarios.
 ---
 **This is a WIP - TODO**
 - How does Magic and spells work!?
