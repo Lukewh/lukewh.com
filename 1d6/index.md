@@ -186,12 +186,12 @@ Within the system equipment and items are purely for flavour, they do not provid
 # Game Mastering
 This system aims to create a simple framework for great collaborative story-telling. A GM should always err on the side of fun. Generally this is achieved by allowing players use their imaginations and not being too strict with Difficulty Checks. The role of a GM is to keep the story moving, throwing in fun twists and options for the players to explore.
 
-### NPCs
+## NPCs
 Keep in mind that NPCs should have a minimal character sheet containing a Quirk and Skills. The NPCs can then use these skills when interacting with PCs and should be used to set the DC of certain checks. For example a PC could question an NPCs knowledge about an event, if the NPC has the Deception skill this can be used to provide false information.
 
 Be aware that asking a player to roll a deception check can give away the fact the NPC is trying to deceive the PC. Instead choose an appropriate alternative for the player to use from the list within the same skill category (Physical, Mental, Physical manipulation, or Understanding)
 
-### Outro
+## Outro
 If you want a clear and concise set of rules this isn't the system for you. There are, without a doubt, many holes or scenarios that this system does not account for but it should give a backbone for which a story can be built from.
 
 # Resources
