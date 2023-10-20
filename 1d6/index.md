@@ -203,3 +203,5 @@ If you want a clear and concise set of rules this isn't the system for you. Ther
 |---|---|
 | 2023-10-19 | - Moved from [blog post](/blog/1d6-system) here<br /> - Added healing section<br /> - Added a GM note for NPCs |
 | 2023-10-10 | Original [blog post](/blog/1d6-system) published |
+
+<script src="/assets/dice.js"></script>
